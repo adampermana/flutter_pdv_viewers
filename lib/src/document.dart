@@ -7,10 +7,9 @@ import 'package:path_provider/path_provider.dart';
 
 import '../advance_pdv_viewer.dart';
 
-
 class PDFDocument {
   static const MethodChannel _channel =
-  MethodChannel('flutter_plugin_pdf_viewer');
+      MethodChannel('flutter_plugin_pdf_viewer');
 
   String? _filePath;
   late int count;
@@ -49,7 +48,7 @@ class PDFDocument {
     document._filePath = f.path;
     try {
       final pageCount =
-      await _channel.invokeMethod('getNumberOfPages', {'filePath': f.path});
+          await _channel.invokeMethod('getNumberOfPages', {'filePath': f.path});
       document.count = document.count = int.parse(pageCount as String);
     } catch (e) {
       throw Exception('Error reading PDF!');
@@ -150,9 +149,9 @@ class PDFDocument {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is PDFDocument &&
-              runtimeType == other.runtimeType &&
-              _filePath == other._filePath;
+      other is PDFDocument &&
+          runtimeType == other.runtimeType &&
+          _filePath == other._filePath;
 
   @override
   int get hashCode => Object.hash(_filePath, count);

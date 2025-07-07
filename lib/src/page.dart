@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_pdv_viewers/src/src/zoomable_widget.dart';
+import 'package:flutter_pdv_viewers/src/zoomable_widget.dart';
 
 /// A class to represent PDF page
 /// [imgPath], path of the image (pdf page)
@@ -19,14 +19,15 @@ class PDFPage extends StatefulWidget {
   final double maxScale;
   final double panLimit;
   const PDFPage(
-      this.imgPath,
-      this.num, {super.key,
-        this.onZoomChanged,
-        this.zoomSteps = 3,
-        this.minScale = 1.0,
-        this.maxScale = 5.0,
-        this.panLimit = 1.0,
-      });
+    this.imgPath,
+    this.num, {
+    super.key,
+    this.onZoomChanged,
+    this.zoomSteps = 3,
+    this.minScale = 1.0,
+    this.maxScale = 5.0,
+    this.panLimit = 1.0,
+  });
 
   @override
   _PDFPageState createState() => _PDFPageState();
@@ -54,7 +55,7 @@ class _PDFPageState extends State<PDFPage> {
     final resolver = provider.resolve(createLocalImageConfiguration(context));
     resolver.addListener(
       ImageStreamListener(
-            (imgInfo, alreadyPainted) {
+        (imgInfo, alreadyPainted) {
           if (!alreadyPainted && mounted) setState(() {});
         },
       ),

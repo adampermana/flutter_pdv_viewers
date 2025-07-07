@@ -1,10 +1,9 @@
 // import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 // import 'package:advance_pdf_viewer/src/page_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pdv_viewers/src/src/page_picker.dart';
+import 'package:flutter_pdv_viewers/src/page_picker.dart';
 
 import '../advance_pdv_viewer.dart';
-
 
 /// enum to describe indicator position
 enum IndicatorPosition { topLeft, topRight, bottomLeft, bottomRight }
@@ -53,12 +52,12 @@ class PDFViewer extends StatefulWidget {
   final ValueChanged<int>? onPageChanged;
 
   final Widget Function(
-      BuildContext,
-      int? pageNumber,
-      int? totalPages,
-      void Function({int page}) jumpToPage,
-      void Function({int? page}) animateToPage,
-      )? navigationBuilder;
+    BuildContext,
+    int? pageNumber,
+    int? totalPages,
+    void Function({int page}) jumpToPage,
+    void Function({int? page}) animateToPage,
+  )? navigationBuilder;
   final Widget? progressIndicator;
 
   const PDFViewer({
@@ -176,7 +175,7 @@ class _PDFViewerState extends State<PDFViewer> {
   Widget _drawIndicator() {
     final child = GestureDetector(
         onTap:
-        widget.showPicker && widget.document.count > 1 ? _pickPage : null,
+            widget.showPicker && widget.document.count > 1 ? _pickPage : null,
         child: Container(
             padding: const EdgeInsets.only(
               top: 4.0,
@@ -230,9 +229,9 @@ class _PDFViewerState extends State<PDFViewer> {
         children: <Widget>[
           PageView.builder(
             physics:
-            _swipeEnabled && widget.enableSwipeNavigation && !_isLoading
-                ? null
-                : const NeverScrollableScrollPhysics(),
+                _swipeEnabled && widget.enableSwipeNavigation && !_isLoading
+                    ? null
+                    : const NeverScrollableScrollPhysics(),
             onPageChanged: (page) {
               setState(() => _pageNumber = page + 1);
               _loadPage();
@@ -243,9 +242,9 @@ class _PDFViewerState extends State<PDFViewer> {
             itemCount: _pages?.length ?? 0,
             itemBuilder: (context, index) => _pages![index] == null
                 ? Center(
-              child: widget.progressIndicator ??
-                  const CircularProgressIndicator.adaptive(),
-            )
+                    child: widget.progressIndicator ??
+                        const CircularProgressIndicator.adaptive(),
+                  )
                 : _pages![index]!,
           ),
           if (widget.showIndicator && !_isLoading) _drawIndicator(),
@@ -253,95 +252,95 @@ class _PDFViewerState extends State<PDFViewer> {
       ),
       floatingActionButton: widget.showPicker && widget.document.count > 1
           ? FloatingActionButton(
-        elevation: 4.0,
-        tooltip: widget.tooltip.jump,
-        backgroundColor: widget.pickerButtonColor ?? Colors.blue,
-        onPressed: () {
-          _pickPage();
-        },
-        child: Icon(
-          Icons.view_carousel,
-          color: widget.pickerIconColor ?? Colors.white,
-        ),
-      )
+              elevation: 4.0,
+              tooltip: widget.tooltip.jump,
+              backgroundColor: widget.pickerButtonColor ?? Colors.blue,
+              onPressed: () {
+                _pickPage();
+              },
+              child: Icon(
+                Icons.view_carousel,
+                color: widget.pickerIconColor ?? Colors.white,
+              ),
+            )
           : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: (widget.showNavigation && widget.document.count > 1)
           ? widget.navigationBuilder != null
-          ? widget.navigationBuilder!(
-        context,
-        _pageNumber,
-        widget.document.count,
-        _jumpToPage,
-        _animateToPage,
-      )
-          : BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: IconButton(
-                icon: const Icon(Icons.first_page),
-                tooltip: widget.tooltip.first,
-                onPressed: _pageNumber == 1 || _isLoading
-                    ? null
-                    : () {
-                  _pageNumber = 1;
-                  _jumpToPage();
-                },
-              ),
-            ),
-            Expanded(
-              child: IconButton(
-                icon: const Icon(Icons.chevron_left),
-                tooltip: widget.tooltip.previous,
-                onPressed: _pageNumber == 1 || _isLoading
-                    ? null
-                    : () {
-                  _pageNumber--;
-                  if (1 > _pageNumber) {
-                    _pageNumber = 1;
-                  }
-                  _animateToPage();
-                },
-              ),
-            ),
-            if (widget.showPicker) const Spacer(),
-            Expanded(
-              child: IconButton(
-                icon: const Icon(Icons.chevron_right),
-                tooltip: widget.tooltip.next,
-                onPressed:
-                _pageNumber == widget.document.count || _isLoading
-                    ? null
-                    : () {
-                  _pageNumber++;
-                  if (widget.document.count < _pageNumber) {
-                    _pageNumber = widget.document.count;
-                  }
-                  _animateToPage();
-                },
-              ),
-            ),
-            Expanded(
-              child: IconButton(
-                icon: const Icon(Icons.last_page),
-                tooltip: widget.tooltip.last,
-                onPressed:
-                _pageNumber == widget.document.count || _isLoading
-                    ? null
-                    : () {
-                  _pageNumber = widget.document.count;
-                  _jumpToPage();
-                },
-              ),
-            ),
-          ],
-        ),
-      )
+              ? widget.navigationBuilder!(
+                  context,
+                  _pageNumber,
+                  widget.document.count,
+                  _jumpToPage,
+                  _animateToPage,
+                )
+              : BottomAppBar(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        child: IconButton(
+                          icon: const Icon(Icons.first_page),
+                          tooltip: widget.tooltip.first,
+                          onPressed: _pageNumber == 1 || _isLoading
+                              ? null
+                              : () {
+                                  _pageNumber = 1;
+                                  _jumpToPage();
+                                },
+                        ),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                          icon: const Icon(Icons.chevron_left),
+                          tooltip: widget.tooltip.previous,
+                          onPressed: _pageNumber == 1 || _isLoading
+                              ? null
+                              : () {
+                                  _pageNumber--;
+                                  if (1 > _pageNumber) {
+                                    _pageNumber = 1;
+                                  }
+                                  _animateToPage();
+                                },
+                        ),
+                      ),
+                      if (widget.showPicker) const Spacer(),
+                      Expanded(
+                        child: IconButton(
+                          icon: const Icon(Icons.chevron_right),
+                          tooltip: widget.tooltip.next,
+                          onPressed:
+                              _pageNumber == widget.document.count || _isLoading
+                                  ? null
+                                  : () {
+                                      _pageNumber++;
+                                      if (widget.document.count < _pageNumber) {
+                                        _pageNumber = widget.document.count;
+                                      }
+                                      _animateToPage();
+                                    },
+                        ),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                          icon: const Icon(Icons.last_page),
+                          tooltip: widget.tooltip.last,
+                          onPressed:
+                              _pageNumber == widget.document.count || _isLoading
+                                  ? null
+                                  : () {
+                                      _pageNumber = widget.document.count;
+                                      _jumpToPage();
+                                    },
+                        ),
+                      ),
+                    ],
+                  ),
+                )
           : Container(
-        height: 0,
-      ),
+              height: 0,
+            ),
     );
   }
 }
