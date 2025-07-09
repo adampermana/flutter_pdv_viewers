@@ -51,7 +51,7 @@ public class FlutterPdvViewersPlugin: NSObject, FlutterPlugin {
             return nil
         }
 
-        let filePathAndDirectory = temporaryDirectory.appendingPathComponent(Self.kDirectory)
+        let filePathAndDirectory = URL(fileURLWithPath: temporaryDirectory).appendingPathComponent(Self.kDirectory).path
 
         // Clear cache folder
         if FileManager.default.fileExists(atPath: filePathAndDirectory) {
@@ -92,7 +92,7 @@ public class FlutterPdvViewersPlugin: NSObject, FlutterPlugin {
             return nil
         }
 
-        let filePathAndDirectory = temporaryDirectory.appendingPathComponent(Self.kDirectory)
+        let filePathAndDirectory = URL(fileURLWithPath: temporaryDirectory).appendingPathComponent(Self.kDirectory).path
 
         var actualPageNumber = pageNumber
         if pageNumber > numberOfPages {
@@ -114,7 +114,7 @@ public class FlutterPdvViewersPlugin: NSObject, FlutterPlugin {
         }
 
         let relativeOutputFilePath = "\(Self.kDirectory)/\(Self.kFileName)-\(actualPageNumber).png"
-        let imageFilePath = temporaryDirectory.appendingPathComponent(relativeOutputFilePath)
+        let imageFilePath = URL(fileURLWithPath: temporaryDirectory).appendingPathComponent(relativeOutputFilePath).path
 
         let sourceRect = sourcePDFPage.getBoxRect(.mediaBox)
 
@@ -134,8 +134,8 @@ public class FlutterPdvViewersPlugin: NSObject, FlutterPlugin {
         currentContext.interpolationQuality = .high
 
         // Fill background with white color
-        currentContext.setRGBFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        currentContext.fill(currentContext.clipBoundingBox)
+        currentContext.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        currentContext.fill(sourceRect)
 
         currentContext.translateBy(x: 0.0, y: height)
         currentContext.scaleBy(x: dpi, y: -dpi)
