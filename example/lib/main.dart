@@ -201,8 +201,9 @@ class _PDFViewerDemoState extends State<PDFViewerDemo> {
     try {
       // Note: This is a demo - you would need to add a PDF file to assets
       // For now, we'll show an error message
-      throw Exception('Please add a PDF file to assets folder and update this code');
-      
+      throw Exception(
+          'Please add a PDF file to assets folder and update this code');
+
       // Uncomment and modify this line when you have a PDF in assets:
       // final document = await PDFDocument.fromAsset('assets/sample.pdf');
       // setState(() {
@@ -218,7 +219,8 @@ class _PDFViewerDemoState extends State<PDFViewerDemo> {
 
   Future<void> _loadFromUrl() async {
     final urlController = TextEditingController(
-      text: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+      text:
+          'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
     );
 
     final url = await showDialog<String>(
