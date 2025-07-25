@@ -1,7 +1,7 @@
 name: flutter_pdv_viewers
-description: "A new Flutter project."
+description: "A comprehensive Flutter plugin for viewing PDF documents with advanced features including zoom, pan, navigation controls, and customizable UI components."
 version: 0.0.1
-homepage:
+homepage: https://github.com/adampermana/flutter_pdv_viewers
 
 environment:
   sdk: '>=3.3.0 <4.0.0'

@@ -1,3 +1,4 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Initial release of flutter_pdv_viewes
+* Get available flutter_pdv_viewes on iOS and Android
