@@ -5,6 +5,14 @@
 
 A comprehensive Flutter plugin for viewing PDF documents with advanced features including zoom, pan, navigation controls, and customizable UI components.
 
+## ☕ Support My Work
+If you find my work valuable, your support means the world to me! It helps me focus on creating more, learning, and growing.
+Thank you for your generosity and support! ☕
+
+[![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/adampermana)
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/adampermana)
+
 ## 🌟 Features
 
 - **📄 Multiple PDF Loading Sources**
